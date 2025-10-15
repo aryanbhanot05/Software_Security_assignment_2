@@ -118,8 +118,9 @@ public class ManageComputers {
                 //Get CPU, RAM and Disk info
                 tempComputer = getComputerData(s); 
 
-                System.out.print("Enter screen size:");
-                String screenSize = s.nextLine();
+                //Get screen size
+                SCREEN screen = InputValidators.readEnumOrRetry(s, SCREEN.class, "Enter Screen (13/14): ");
+                String screenSize = String.valueOf(screen.getInch());
 
                 //Add new Laptop to ArrayList in main() method
                 computers.add(new Laptop(tempComputer.getCPU(),tempComputer.getRAM(),tempComputer.getDisk(),screenSize)); 
@@ -132,8 +133,9 @@ public class ManageComputers {
             //Get CPU, RAM and Disk info
                 tempComputer = getComputerData(s); 
 
-                System.out.print("Enter GPU:");
-                String GPUType = s.nextLine();
+                //Get GPU type
+                GPU gpu = InputValidators.readEnumOrRetry(s, GPU.class, "Enter GPU (Nvidia/AMD): ");
+                String GPUType = gpu.name();
 
                 //Add new Desktop to ArrayList in main() method
                 computers.add(new Desktop(tempComputer.getCPU(),tempComputer.getRAM(),tempComputer.getDisk(),GPUType)); 
@@ -205,10 +207,12 @@ public class ManageComputers {
                     System.out.println("Editing a Laptop:");
 
                     //Get CPU, RAM and Disk info, store in temporary Computer-type object
-                    tempComputer = getComputerData(s); 
+                    tempComputer = getComputerData(s);
 
-                    System.out.print("Enter screen size:");
-                    String screenSize = s.nextLine();
+                    //Get screen size
+                    SCREEN screen = InputValidators.readEnumOrRetry(s, SCREEN.class, "Enter Screen (13/14): ");
+                    String screenSize = String.valueOf(screen.getInch());
+
 
                     //Get reference to the object in ArrayList<Computer> to edit
                     //Cast Computer to Laptop for setScreenSize call a few lines of code later
@@ -230,8 +234,10 @@ public class ManageComputers {
                     //Get CPU, RAM and Disk info
                     tempComputer = getComputerData(s); 
 
-                    System.out.print("Enter GPU:");
-                    String GPUType = s.nextLine();
+                    //Get GPU type
+                    GPU gpu = InputValidators.readEnumOrRetry(s, GPU.class, "Enter GPU (Nvidia/AMD): ");
+                    String GPUType = gpu.name();
+
 
                     //Get reference to the object in ArrayList<Computer> to edit
                     //Cast Computer to Laptop for setScreenSize call a few lines of code later
@@ -259,18 +265,15 @@ public class ManageComputers {
     //Helper method to get data common to Laptop and Desktop (CPU, RAM and disk) objects. Returns a Computer-type object
     //holding these values as attribues
     private static Computer getComputerData(Scanner s) {
-        String CPU="";
-        String RAM="";
-        String disk="";
+        // whitelist inputs (retry until valid)
+        CPU cpuSel   = InputValidators.readEnumOrRetry(s, CPU.class,  "Enter CPU (i5/i7): ");
+        RAM ramSel   = InputValidators.readEnumOrRetry(s, RAM.class,  "Enter RAM (16/32): ");
+        DISK diskSel = InputValidators.readEnumOrRetry(s, DISK.class, "Enter Disk (512/1024): ");
 
-        System.out.print("Enter CPU:");
-        CPU = s.nextLine();
-
-        System.out.print("Enter RAM:");
-        RAM = s.nextLine();
-
-        System.out.print("Enter Disk:");
-        disk = s.nextLine();
+        // map enums to the original String fields expected by the existing domain constructors
+        String CPU  = cpuSel.name();
+        String RAM  = String.valueOf(ramSel.getGb());
+        String disk = String.valueOf(diskSel.getGb());
 
         return new Computer(CPU,RAM,disk);
 

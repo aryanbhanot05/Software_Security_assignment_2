@@ -1,0 +1,1 @@
+public enum GPU { Nvidia, AMD }
