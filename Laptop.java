@@ -1,23 +1,23 @@
 //Laptop computer: adds screen size to other Computer info
 
-public class Laptop { //Laptop inherits from Computer
-    
+public class Laptop { // Laptop inherits from Computer
+
     private final Computer computer;
     private final String screenSize;
 
-    //Constructors
+    // Constructors
 
     public Laptop(String CPU, String RAM, String disk, String screenSize) {
-        
-        if (!InputValidator.isValidComponent(screenSize)) {
+
+        if (!InputValidator.isValidScreen(screenSize)) {
             throw new IllegalArgumentException("Invalid Screen Size format. Input failed whitelist validation.");
         }
-        
+
         this.computer = new Computer(CPU, RAM, disk);
-        this.screenSize=screenSize;
+        this.screenSize = screenSize;
     }
 
-    //Getter
+    // Getter
     public String getScreenSize() {
         return this.screenSize;
     }
@@ -34,10 +34,11 @@ public class Laptop { //Laptop inherits from Computer
         return this.computer.getDisk();
     }
 
-    //Return formatted version of data
+    // Return formatted version of data
     @Override
     public String toString() {
-        return "Type:Laptop\tCPU:" + this.computer.getCPU() + "\tRAM:" + this.computer.getRAM() + "\tDisk:" + this.computer.getDisk() + "\tScreen:" + this.screenSize;
+        return "Type:Laptop\tCPU:" + this.computer.getCPU() + "\tRAM:" + this.computer.getRAM() + "\tDisk:"
+                + this.computer.getDisk() + "\tScreen:" + this.screenSize;
     }
-    
+
 }

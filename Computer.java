@@ -5,26 +5,26 @@ public class Computer {
     private final String RAM;
     private final String disk;
 
-    //Constructors
+    // Constructors
     public Computer(String CPU, String RAM, String disk) {
 
         // Whitelist Validation: Throw an exception if input is not safe
-        if (!InputValidator.isValidComponent(CPU)) {
+        if (!InputValidator.isValidCpu(CPU)) {
             throw new IllegalArgumentException("Invalid CPU format.");
         }
-        if (!InputValidator.isValidComponent(RAM)) {
+        if (!InputValidator.isValidRam(RAM)) {
             throw new IllegalArgumentException("Invalid RAM format.");
         }
-        if (!InputValidator.isValidComponent(disk)) {
+        if (!InputValidator.isValidDisk(disk)) {
             throw new IllegalArgumentException("Invalid Disk format.");
         }
 
-        this.CPU=CPU;
-        this.RAM=RAM;
-        this.disk=disk;
+        this.CPU = CPU;
+        this.RAM = RAM;
+        this.disk = disk;
     }
 
-    //Getters
+    // Getters
     public String getCPU() {
         return this.CPU;
     }

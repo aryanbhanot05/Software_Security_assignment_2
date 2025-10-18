@@ -1,22 +1,22 @@
 //Desktop computer: adds GPU type
 
-public class Desktop { //Inherits from Computer
+public class Desktop { // Inherits from Computer
     private final Computer computer;
     private final String GPUType;
 
-    //Constructors
+    // Constructors
 
     public Desktop(String CPU, String RAM, String disk, String GPUType) {
-        
-        if (!InputValidator.isValidComponent(GPUType)) {
+
+        if (!InputValidator.isValidGpu(GPUType)) {
             throw new IllegalArgumentException("Invalid GPU format. Input failed whitelist validation.");
         }
-        
+
         this.computer = new Computer(CPU, RAM, disk);
-        this.GPUType=GPUType;
+        this.GPUType = GPUType;
     }
 
-    //Getter
+    // Getter
     public String getGPUType() {
         return this.GPUType;
     }
@@ -33,10 +33,11 @@ public class Desktop { //Inherits from Computer
         return this.computer.getDisk();
     }
 
-    //Return formatted version of data
+    // Return formatted version of data
     @Override
     public String toString() {
-        return "Type:Desktop\tCPU:" + this.computer.getCPU() + "\tRAM:" + this.computer.getRAM() + "\tDisk:" + this.computer.getDisk() + "\tGPU:" + this.GPUType;
+        return "Type:Desktop\tCPU:" + this.computer.getCPU() + "\tRAM:" + this.computer.getRAM() + "\tDisk:"
+                + this.computer.getDisk() + "\tGPU:" + this.GPUType;
     }
 
 }
