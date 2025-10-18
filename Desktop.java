@@ -6,13 +6,13 @@ public class Desktop { //Inherits from Computer
 
     //Constructors
 
-    public Desktop(String CPU, String RAM, String disk, String GPUType) {
+    public Desktop(Computer computer, String GPUType) {
         
         if (!InputValidator.isValidComponent(GPUType)) {
             throw new IllegalArgumentException("Invalid GPU format. Input failed whitelist validation.");
         }
         
-        this.computer = new Computer(CPU, RAM, disk);
+        this.computer = computer;
         this.GPUType=GPUType;
     }
 
