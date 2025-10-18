@@ -7,13 +7,13 @@ public class Laptop { //Laptop inherits from Computer
 
     //Constructors
 
-    public Laptop(String CPU, String RAM, String disk, String screenSize) {
+    public Laptop(Computer computer, String screenSize) {
         
         if (!InputValidator.isValidComponent(screenSize)) {
             throw new IllegalArgumentException("Invalid Screen Size format. Input failed whitelist validation.");
         }
         
-        this.computer = new Computer(CPU, RAM, disk);
+        this.computer = computer;
         this.screenSize=screenSize;
     }
 
